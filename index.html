@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Form</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f3f3f3;
+            text-align: center;
+        }
+
+        h1 {
+            color: #5a54c4;
+        }
+
+        .form-box {
+            border: 4px solid grey;
+            display: inline-block;
+            padding: 10px;
+            background: white;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        select {
+            width: 150px;
+            height: 25px;
+        }
+
+        .gender {
+            width: auto;
+        }
+
+        .save-btn {
+            background: #8ff0d4;
+            border: none;
+            width: 100%;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        table {
+            margin: auto;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 2px solid grey;
+            padding: 6px;
+        }
+
+        .delete {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>STUDENT FORM</h1>
+
+    <div class="form-box">
+
+        <table>
+
+            <tr>
+                <td>Name</td>
+                <td><input type="text" id="name"></td>
+            </tr>
+
+            <tr>
+                <td>Age</td>
+                <td><input type="number" id="age"></td>
+            </tr>
+
+            <tr>
+                <td>Gender</td>
+                <td>
+                    <input type="radio" name="gender" value="Male" class="gender"> Male
+                    <input type="radio" name="gender" value="Female" class="gender"> Female
+                </td>
+            </tr>
+
+            <tr>
+                <td>Course</td>
+                <td>
+                    <select id="course">
+                        <option>JavaScript</option>
+                        <option>Python</option>
+                        <option>Java</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Email</td>
+                <td><input type="email" id="email"></td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <button class="save-btn" onclick="addStudent()">Save</button>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+    <table id="studentTable">
+
+        <tr>
+            <th>NAME</th>
+            <th>AGE</th>
+            <th>COURSE</th>
+            <th>GENDER</th>
+            <th>EMAIL</th>
+            <th>ACTION</th>
+        </tr>
+
+    </table>
+
+    <script>
+
+
+        function addStudent() {
+
+            var name = document.getElementById("name").value
+            var age = document.getElementById("age").value
+            var course = document.getElementById("course").value
+            var email = document.getElementById("email").value
+
+            var genderElement = document.querySelector('input[name="gender"]:checked')
+
+            if (genderElement == null) {
+                alert("Please select gender")
+                return
+            }
+
+            var gender = genderElement.value
+
+            var table = document.getElementById("studentTable")
+
+            var row = table.insertRow()
+
+            row.insertCell(0).innerHTML = name
+            row.insertCell(1).innerHTML = age
+            row.insertCell(2).innerHTML = course
+            row.insertCell(3).innerHTML = gender
+            row.insertCell(4).innerHTML = email
+
+            var action = row.insertCell(5)
+
+            action.innerHTML = "<button onclick='deleteRow(this)'>Delete</button>"
+
+        }
+
+        function deleteRow(btn) {
+            var row = btn.parentNode.parentNode
+            row.remove()
+        }
+
+    </script>
+
+
+
+    </script>
+
+</body>
+
+</html>
